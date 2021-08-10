@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
 
 class MainActivity2 : AppCompatActivity() {
@@ -22,14 +24,17 @@ class MainActivity2 : AppCompatActivity() {
         setContentView(R.layout.activity_main2)
 
         val button: Button = findViewById(R.id.button)
+
+
         button.setOnClickListener {
-            val text = "Спасибо за просмотр.\n"
-
-            val duration = Toast.LENGTH_SHORT
-
-            val toast = Toast.makeText(applicationContext, text, duration)
-            toast.show()
+            val toast = Toast.makeText(applicationContext, R.string.cat, Toast.LENGTH_LONG)
             toast.setGravity(Gravity.CENTER, 0, 0)
+
+            val toastContainer = toast.view as LinearLayout
+            val catImage = ImageView(this)
+            catImage.setImageResource(R.drawable.hungrycat)
+            toastContainer.addView(catImage, 0)
+            toast.show()
         }
     }
 }
